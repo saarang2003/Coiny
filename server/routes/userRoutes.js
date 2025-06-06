@@ -1,12 +1,6 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const zod = require("zod");
-const dotenv = require("dotenv").config();
-const JWT_SECRET = process.env.JWT_SECRET;
-const {User} = require('../models/User');
-const {Account} = require('../models/Account');
-const { authMiddleware } = require('../middleware/middleware')
+const { signIn, signUp, upDateUser, getAllUser } = require("../controller/userController");
+const { authMiddleware } = require("../middleware/middleware");
 
 const singUpBody = zod.object({
     username: zod.string().email(),
@@ -18,6 +12,9 @@ const singUpBody = zod.object({
 
 const router = express.Router();
 
-router.post('/signup' , async(req,res) =>{
-    
-})
+router.post('/signin', signIn);
+router.post('/signup' , signUp);
+router.put('/update', authMiddleware ,upDateUser);
+router.get('/users' , authMiddleware , getAllUser);
+
+module.exports = router;

@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDb = require("./db/db");
+const root = require('./routes/common');
 
 dotenv.config();
 connectDb();
@@ -24,6 +25,8 @@ app.use(
 
     })
   );
+
+  app.use("/api/v1", rootRouter);
   
 
   app.listen(5000, ()=> {

@@ -184,3 +184,5 @@ export const getAllUser = async(req,res) =>{
         });
     }
 }
+
+module.exports = {getAllUser , signIn , signUp , upDateUser};
