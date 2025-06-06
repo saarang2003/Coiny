@@ -6,6 +6,7 @@ const dotenv = require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
 const { User } = require("../models/User");
 const { Account } = require("../models/Account");
+const {History} = require('../models/History');
 
 const { authMiddleware } = require("../middleware/middleware");
 
