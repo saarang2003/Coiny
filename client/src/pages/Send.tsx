@@ -67,7 +67,7 @@ export default function Send() {
                             onChange={(e) => setAmount(e.target.value)} 
                             placeholder='Enter amount' 
                             label="Amount (in Rs)" 
-                            value='number'
+                            value={amount}
                             name='Amount'
                             type ="number"
                         />
