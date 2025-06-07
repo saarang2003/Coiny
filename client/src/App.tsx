@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React ,{ Suspense, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { alertAtom } from "./store/atom/user";
@@ -11,6 +12,8 @@ import TransactionHistory from "./pages/TransactionHistory";
 import Signup from "./pages/Signup";
 import Signin from "./pages/SignIn";
 import Send from "./pages/Send";
+import { SignIn1 } from "./pages/NewSignIn";
+import { SignUp1 } from "./pages/NewSignUp";
 
 
 export default function App() {
@@ -33,8 +36,8 @@ export default function App() {
           <Route index element={<Suspense fallback={<Loading />}><Users /> </Suspense>} />
           <Route path='history' element={<TransactionHistory />} />
         </Route>
-        <Route path='signup' element={<Signup />} />
-        <Route path='signin' element={<Signin />} />
+        <Route path='signup' element={<SignUp1 />} />
+        <Route path='signin' element={<SignIn1 />} />
         <Route path='sendmoney' element={<Send />} />
       </Routes>
     </BrowserRouter>

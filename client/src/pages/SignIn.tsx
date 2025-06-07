@@ -16,14 +16,14 @@ export default function Signin() {
     const handleSignIn = useAuth("signin",  data );
 
     return (
-        <div className='min-h-screen w-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4'>
+        <div className='min-h-screen bg-black  w-full  from-blue-50 to-blue-100 flex items-center justify-center p-4'>
             <motion.section 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
                 className='w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden'
             >
-                <div className='p-8 space-y-6'>
+                <div className='p-8  space-y-6'>
                     <div className='text-center'>
                         <motion.h2 
                             initial={{ y: -20, opacity: 0 }}

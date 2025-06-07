@@ -12,7 +12,7 @@ interface InputBoxProps {
 export default function InputBox({ label, placeholder, onChange, value, name }: InputBoxProps) {
   return (
     <div className="flex flex-col space-y-2">
-      <label className="text-sm font-medium text-blue-800 pl-1">
+      <label className="text-sm font-medium text-white pl-1">
         {label}
       </label>
       <input 
@@ -20,7 +20,7 @@ export default function InputBox({ label, placeholder, onChange, value, name }: 
         name={name}
         value={value}
         onChange={onChange}
-        className="py-2 px-3 rounded-md border border-blue-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-blue-900"
+        className="py-2 px-3 rounded-md border border-blue-200 focus:border-white focus:ring-1 focus:ring-white outline-none text-white"
       />
     </div>
   );
