@@ -4,8 +4,9 @@ interface InputBoxProps {
   label: string;
   placeholder: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
+  value : string;
   name: string;
+  type? : string;
 }
 
 export default function InputBox({ label, placeholder, onChange, value, name }: InputBoxProps) {
