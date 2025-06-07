@@ -1,16 +1,42 @@
+import React ,{ Suspense, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { alertAtom } from "./store/atom/user";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Alert from "./component/Alert";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Loading from "./component/Loading";
+import Users from "./component/User";
+import TransactionHistory from "./pages/TransactionHistory";
+import Signup from "./pages/Signup";
+import Signin from "./pages/SignIn";
+import Send from "./pages/Send";
 
-import './App.css'
-import { Button } from './components/ui/button'
 
-function App() {
-
+export default function App() {
+  const [alert, setAlert] = useRecoilState(alertAtom);
+  useEffect(() => {
+    let timeoutId;
+    if (alert.display) {
+      setTimeout(() => {
+        setAlert({ ...alert, display: false })
+      }, 3000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [alert, setAlert])
   return (
-    <>
-  <div className='bg-black text-white'>
-    <Button>Use this </Button>
-  </div>
-    </>
+    <BrowserRouter>
+      <Alert />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/dashboard' element={<Dashboard />} >
+          <Route index element={<Suspense fallback={<Loading />}><Users /> </Suspense>} />
+          <Route path='history' element={<TransactionHistory />} />
+        </Route>
+        <Route path='signup' element={<Signup />} />
+        <Route path='signin' element={<Signin />} />
+        <Route path='sendmoney' element={<Send />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
