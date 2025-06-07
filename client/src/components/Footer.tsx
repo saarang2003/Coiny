@@ -19,28 +19,28 @@ const footerLinks: FooterSection[] = [
 	{
 		label: 'Product',
 		links: [
-			{ title: 'Features', href: '#features' },
-			{ title: 'Pricing', href: '#pricing' },
-			{ title: 'Testimonials', href: '#testimonials' },
+			{ title: 'Features', href: '#' },
+			{ title: 'Pricing', href: '#' },
+			{ title: 'Testimonials', href: '#' },
 			{ title: 'Integration', href: '/' },
 		],
 	},
 	{
 		label: 'Company',
 		links: [
-			{ title: 'FAQs', href: '/faqs' },
-			{ title: 'About Us', href: '/about' },
-			{ title: 'Privacy Policy', href: '/privacy' },
-			{ title: 'Terms of Services', href: '/terms' },
+			{ title: 'FAQs', href: '/' },
+			{ title: 'About Us', href: '/' },
+			{ title: 'Privacy Policy', href: '/' },
+			{ title: 'Terms of Services', href: '/' },
 		],
 	},
 	{
 		label: 'Resources',
 		links: [
-			{ title: 'Blog', href: '/blog' },
-			{ title: 'Changelog', href: '/changelog' },
-			{ title: 'Brand', href: '/brand' },
-			{ title: 'Help', href: '/help' },
+			{ title: 'Blog', href: '/' },
+			{ title: 'Changelog', href: '/' },
+			{ title: 'Brand', href: '/' },
+			{ title: 'Help', href: '/' },
 		],
 	},
 	{

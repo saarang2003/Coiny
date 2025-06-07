@@ -1,5 +1,6 @@
 
 import { Features } from "../components/Features";
+import { Footer } from "../components/Footer";
 import { HeroSection } from "../components/hero-section-1";
 
 
@@ -119,6 +120,7 @@ const Home = () => {
 <div className="w-full h-full bg-black  text-white" >
 <HeroSection/>
 <Features />
+<Footer/>
 </div>
   );
 };
