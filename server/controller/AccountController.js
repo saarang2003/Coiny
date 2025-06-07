@@ -31,7 +31,7 @@ const getBalance = async(req,res) =>{
 }
 
 //  Very important start session mongodb for consistency 
-const transfer = async(req,res) =>{
+const doTransfer = async(req,res) =>{
     try {
 
          const session = await mongoose.startSession();
@@ -108,7 +108,7 @@ const transfer = async(req,res) =>{
 }
 
 
-const history = async(req,res) =>{
+const getHistory = async(req,res) =>{
 
     try {
          const user = await User.findOne({ _id: req.userId })
@@ -135,3 +135,5 @@ const history = async(req,res) =>{
         });
     }
 }
+
+module.exports = {getBalance , doTransfer , getHistory};
