@@ -1,7 +1,7 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const zod = require("zod");
+const { z } = require("zod");
 const dotenv = require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
 const { User } = require("../models/User");
@@ -10,16 +10,16 @@ const {History} = require('../models/History');
 
 const { authMiddleware } = require("../middleware/middleware");
 
-const singUpBody = zod.object({
-    username: zod.string().email(),
-    password: zod.string(),
-    firstName: zod.string().min(3),
-    lastName: zod.string().min(3),
+const singUpBody = z.object({
+    username: z.string().email(),
+    password: z.string(),
+    firstName: z.string().min(3),
+    lastName: z.string().min(3),
 });
 
 
 
-export const signUp = async (req,res) =>{
+ const signUp = async (req,res) =>{
 
     try {
          const { success } = singUpBody.safeParse(req.body);
@@ -67,13 +67,13 @@ export const signUp = async (req,res) =>{
     }
 }
 
-const signInBody = zod.object({
-    username: zod.string().email(),
-    password: zod.string()
+const signInBody = z.object({
+    username: z.string().email(),
+    password: z.string()
 });
 
 
-export const signIn = async(req,res) =>{
+ const signIn = async(req,res) =>{
 
     try {
             const { success } = signInBody.safeParse(req.body);
@@ -113,14 +113,14 @@ export const signIn = async(req,res) =>{
 }
  
 
-const updateUser = zod.object({
-    password: zod.string(),
-    firstName: zod.string(),
-    lastName: zod.string(),
+const updateUser = z.object({
+    password: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
 });
 
 
-export const upDateUser =  async(req,res) =>{
+ const upDateUser =  async(req,res) =>{
    
     try {
         const { success } = updateUser.safeParse(req.body);
@@ -150,25 +150,23 @@ export const upDateUser =  async(req,res) =>{
 
 }
 
-export const getAllUser = async(req,res) =>{
+ const getAllUser = async(req,res) =>{
+
+      console.log("Inside getAllUser"); // Add this to check if function runs
+  console.log("User ID:", req.userId);
    
     try {
         const filter = req.query.filter || "";
 
         const users = await User.find({
-            $or: [{
-                firstName: {
-                    "$regex": filter
-                }
-            }, {
-                lastName: {
-                    "$regex": filter
-                }
-            }]
+           $or: [
+                { firstName: { $regex: filter, $options: "i" } },
+                { lastName: { $regex: filter, $options: "i" } }
+            ]
         });
 
 
-        const data = users.filter((i) => i._id != req.userId);
+       const data = users.filter((i) => i._id.toString() !== req.userId);
         res.status(200).json({
             users: data.map(user => ({
                 _id: user._id,

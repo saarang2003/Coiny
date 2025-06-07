@@ -2,13 +2,6 @@ const express = require("express");
 const { signIn, signUp, upDateUser, getAllUser } = require("../controller/userController");
 const { authMiddleware } = require("../middleware/middleware");
 
-const singUpBody = zod.object({
-    username: zod.string().email(),
-    password: zod.string(),
-    firstName: zod.string().min(3),
-    lastName: zod.string().min(3),
-});
-
 
 const router = express.Router();
 
