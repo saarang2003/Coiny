@@ -1,4 +1,5 @@
-import { NavbarDemo } from "../component/NavbarDemo";
+
+import { HeroSection } from "../components/hero-section-1";
 
 
 
@@ -114,8 +115,9 @@ const Home = () => {
 //       </footer>
 //     </div>
 
-<div className='bg-black border-2 border-red-500 text-white'>
-<NavbarDemo />
+<div className="w-full h-full bg-black  text-white" >
+<HeroSection/>
+
 </div>
   );
 };
