@@ -17,7 +17,7 @@ export default function TransactionHistory() {
   const [firstname, setFirstName] = useState<string>("");
 
     async function handleData() {
-        const res = await axios.get("https://localhost:500/api/v1/account/history", {
+        const res = await axios.get("http://localhost:5000/api/v1/account/history", {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") }
         });
         setFirstName(res.data.user);

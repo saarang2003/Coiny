@@ -21,7 +21,7 @@ export function useAuth(route: 'signin' | 'signup', data: AuthData) {
   const handleAuth = useRecoilCallback(({ set }) => async () => {
     try {
       const response = await axios.post(
-        `https://localhost:5000/api/v1/user/${route}`,
+        `http://localhost:5000/api/v1/user/${route}`,
         data
       );
 

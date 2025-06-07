@@ -5,7 +5,7 @@ import { alertAtom, amountAtom } from "../store/atom/user";
 import axios from "axios";
 
 type Payment = {
-  amount: number | string ;
+  amount: number  ;
   id: string;
 };
 
@@ -17,7 +17,7 @@ export default function useTransfer({ amount, id }: Payment) {
   const handleTransfer = useRecoilCallback(({ set }) => async () => {
     try {
       const response = await axios.post(
-        "https://localhost:5000/api/v1/account/transfer",
+        "http://localhost:5000/api/v1/account/transfer",
         {
           amount,
           to: id,
