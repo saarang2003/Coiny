@@ -85,8 +85,8 @@ export function HeroSection() {
               <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                 <AnimatedGroup variants={transitionVariants}>
                   <Link
-                    to="#link"
-                    className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300 dark:border-t-white/5 dark:shadow-zinc-950"
+                    to="#"
+                    className="hover:bg-background dark:hover:border-[#A0FF99] bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-black/5 transition-all duration-300 dark:border-2-border-[#A0FF99]  dark:shadow-zinc-950"
                   >
                     <span className="text-foreground text-sm">
                       Introducing One Stop Solution
@@ -107,7 +107,7 @@ export function HeroSection() {
 
                   <h1 className="mt-8 max-w-7xl mx-auto text-balance font-semibold text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]">
                     Everything You Need For Money
-                   <RoughNotation type="underline" color="#A0FF99" order="3" strokeWidth={5} show={true}>
+                   <RoughNotation type="underline" color="#A0FF99" order="3" strokeWidth={4} show={true}>
  {" "}Management
 </RoughNotation>
                   </h1>

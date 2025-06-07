@@ -1,4 +1,5 @@
 
+import { Features } from "../components/Features";
 import { HeroSection } from "../components/hero-section-1";
 
 
@@ -117,7 +118,7 @@ const Home = () => {
 
 <div className="w-full h-full bg-black  text-white" >
 <HeroSection/>
-
+<Features />
 </div>
   );
 };
