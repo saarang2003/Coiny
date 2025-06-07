@@ -7,7 +7,7 @@ export default function useTransfer({amount, id}){
     const navigate = useNavigate();
     const setAmount = useSetRecoilState(amountAtom);
     const setAlert = useSetRecoilState(alertAtom);
-    const handleTransfer = useRecoilCallback(({ set}) = async() =>{
+      const handleTransfer = useRecoilCallback(({ set }) => async () => {
         try {
             const response = await axios.post("https://localhost:5000/api/v1/account/transfer", {
                 amount,
@@ -24,9 +24,8 @@ export default function useTransfer({amount, id}){
                 setAmount();
             }, [2000])
         } catch (error) {
-             setAlert({ display: true, color: "red", message: error.response.data.message });
+            setAlert({ display: true, color: "red", message: error.response.data.message });
         }
-    })
-
+    });
     return handleTransfer;
 }
