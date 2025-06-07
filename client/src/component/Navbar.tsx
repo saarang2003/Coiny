@@ -10,7 +10,7 @@ export default function Navbar() {
     const navigate = useNavigate();
     return (
         <nav className="w-full bg-white shadow-md border-b border-blue-100">
-            <div className="container mx-auto px-6 py-4 flex flex-row justify-between items-center">
+            <div className="container mx-auto px-6 py-4  flex flex-row justify-between items-center">
                 <div>
                     <Link to="/dashboard" className="text-2xl font-bold text-blue-600">
                         PayWallet
