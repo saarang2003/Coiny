@@ -18,7 +18,7 @@ export default function Dashboard() {
     }, [token]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col">
+        <div className="min-h-screen bg-black flex flex-col">
             <Navbar />
             <main className="flex-grow container mx-auto px-6 py-12 space-y-6">
                 <Suspense fallback={<div className="h-24 bg-white animate-pulse rounded-lg"></div>}>
@@ -26,7 +26,7 @@ export default function Dashboard() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-white shadow-lg rounded-lg p-6"
+                        className="bg-black text-white border-b-4 border-r-4 border-l-1 border-t-1 border-[#A0FF99] shadow-lg rounded-lg p-6"
                     >
                         <Balance />
                     </motion.div>
@@ -36,7 +36,7 @@ export default function Dashboard() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="bg-white rounded-2xl shadow-xl overflow-hidden"
+                    className="bg-black text-white border-b-4 border-r-4 border-l-1 border-t-1 border-[#A0FF99] shadow-lg  p-6 rounded-2xl overflow-hidden"
                 >
                     <Outlet />
                 </motion.div>

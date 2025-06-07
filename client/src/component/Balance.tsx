@@ -8,10 +8,10 @@ export default function Balance() {
     
     return (
         <div className="w-full">
-            <div className="w-full lg:max-w-7xl mx-auto px-4 md:px-0 py-8 text-blue-900">
+            <div className="w-full lg:max-w-7xl mx-auto px-4 md:px-0 py-8 text-white">
                 <div className="text-xl font-extrabold">
                     Your Balance 
-                    <span className="text-blue-600 ml-2">
+                    <span className="text-[#A0FF99] ml-2">
                         ${twoDecimal}
                     </span>
                 </div>

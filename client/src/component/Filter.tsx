@@ -6,14 +6,14 @@ export default function Filter() {
     return (
         <div className="pb-6">
             <div className="w-full lg:max-w-7xl mx-auto px-4 md:px-0 flex flex-col space-y-4">
-                <div className="text-xl font-bold text-blue-900">Users</div>
+                <div className="text-xl font-bold text-white">Users</div>
                 <div>
                     <input 
                         type="text" 
                         name="search" 
                         onChange={(e) => setUser(e.target.value)} 
                         placeholder="Search users..." 
-                        className="w-full p-3 px-4 rounded-md border border-blue-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-blue-900" 
+                        className="w-full p-3 px-4 placeholder:text-white rounded-md border border-blue-200  focus:ring-1 focus:ring-[#A0FF99] outline-none text-white" 
                     />
                 </div>
             </div>

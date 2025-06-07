@@ -29,17 +29,17 @@ export default function Users() {
         <div key={user._id} className="w-full py-4 border-b border-blue-100">
           <div className="w-full lg:max-w-7xl mx-auto px-4 md:px-0 flex flex-row justify-between items-center">
             <div className="flex flex-row items-center gap-4">
-              <div className="h-10 w-10 bg-blue-600 text-white flex justify-center items-center rounded-full">
+              <div className="h-10 w-10 bg-white text-black flex justify-center items-center rounded-full">
                 <span className="font-bold text-lg">{user.firstName[0].toUpperCase()}</span>
               </div>
               <div>
-                <span className="text-blue-900 font-bold">{user.firstName} {user.lastName}</span>
+                <span className="text-[#A0FF99] font-bold">{user.firstName} {user.lastName}</span>
               </div>
             </div>
             <div>
               <button 
                 onClick={() => navigate(`/sendmoney?id=${user._id}&name=${user.firstName}`)} 
-                className="bg-blue-600 text-white hover:bg-blue-700 py-2 px-4 rounded-md transition"
+                className="bg-white text-black  cursor-pointer py-2 px-4 rounded-md transition"
               >
                 Send Money
               </button>
