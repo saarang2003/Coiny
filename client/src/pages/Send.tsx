@@ -16,12 +16,12 @@ export default function Send() {
     const id = searchParams.get("id");
     const name = searchParams.get("name");
   const handleTransfer = useTransfer({ 
-  amount: amount || 0, 
+  amount: Number(amount) , 
   id: id || "" 
-});
+ });
 
     return (
-        <div className='min-h-screen w-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4'>
+        <div className='min-h-screen w-full bg-black  flex items-center justify-center p-4'>
             <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -30,7 +30,7 @@ export default function Send() {
             >
                 <Link 
                     to="/dashboard" 
-                    className='text-blue-600 p-2 rounded-full bg-white shadow-md hover:bg-blue-50 transition-colors'
+                    className='text-[#A0FF99] px-2 rounded-full bg-white  shadow-md  transition-colors'
                 >
                     <ChevronLeft size={20} className='text-2xl' />
                 </Link>
@@ -40,29 +40,32 @@ export default function Send() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className='w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden'
+                className='w-full max-w-md bg-black rounded-2xl shadow-xl overflow-hidden'
             >
-                <div className='p-8 space-y-6'>
-                    <div className='text-center'>
-                        <h2 className='text-4xl font-bold text-blue-900 mb-2 flex items-center justify-center gap-3'>
-                            <Receipt className='text-blue-500' />
+                <div className='p-8  border-b-6 border-r-6 border-l-1 border-t-1 border-[#464646] rounded-2xl space-y-6'>
+                    <div className='text-center '>
+                        <h2 className='text-4xl font-bold text-[#A0FF99] mb-2 flex items-center justify-center gap-3'>
+                            <Receipt className='text-white' />
                             Send Money
                         </h2>
-                        <p className='text-blue-600 text-sm'>Transfer funds to {name}</p>
+                        <p className='text-white text-sm'>Transfer funds to {name}</p>
                     </div>
 
                     <div className='flex items-center justify-center gap-4 mb-6'>
-                        <div className='h-16 w-16 bg-blue-600 flex justify-center items-center rounded-full shadow-lg'>
-                            <span className='text-3xl text-white font-bold'>
+                        <div className='h-16 w-16 bg-white flex justify-center items-center rounded-full shadow-lg'>
+                            <span className='text-3xl text-black font-bold'>
   {name ? name[0].toUpperCase() : ''}
 </span>
                         </div>
                         <div>
-                            <h3 className='text-2xl font-semibold text-blue-900'>{name}</h3>
+                            <h3 className='text-2xl font-semibold text-[#A0FF99]'>{name}</h3>
                         </div>
                     </div>
 
-                    <div className='space-y-4'>
+                    <div className='space-y-4 '>
+
+                        
+
                         <InputBox 
                             onChange={(e) => setAmount(e.target.value)} 
                             placeholder='Enter amount' 
@@ -76,7 +79,7 @@ export default function Send() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={handleTransfer}
-                            className='w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 ease-in-out font-semibold'
+                            className='w-full bg-black border-b-4 border-r-4 border-l-1 border-t-1 border-[#5b5b5b]  text-white py-3 rounded-lg hover:bg-black transition-colors duration-300 ease-in-out font-semibold'
                         >
                             Send Money
                         </motion.button>

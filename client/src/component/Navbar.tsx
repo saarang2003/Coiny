@@ -7,6 +7,7 @@ import { balanceAtom } from '../store/atom/user';
 
 export default function Navbar() {
     const { user } = useRecoilValue(balanceAtom);
+    console.log("user" , user);
     const navigate = useNavigate();
     return (
         <nav className="w-full bg-black text-[#A0FF99] shadow-md border-b border-blue-100">
@@ -17,6 +18,20 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div className="flex flex-row gap-4 items-center">
+
+                     <button 
+                        onClick={() => navigate("history")} 
+                       className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
+                    >
+                        Pay By Qr
+                    </button>
+                    <button 
+                        onClick={() => navigate("history")} 
+                       className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
+                    >
+                        Receive By Qr
+                    </button>
+
                     <button 
                         onClick={() => navigate("history")} 
                         className="text-[#A0FF99] hover:bg-blue-50 hover:text-black rounded-md px-3 py-1 transition"

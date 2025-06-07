@@ -20,6 +20,7 @@ export default function TransactionHistory() {
         const res = await axios.get("http://localhost:5000/api/v1/account/history", {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") }
         });
+        console.log("data" , res);
         setFirstName(res.data.user);
         setData(res.data.history);
     }
@@ -29,18 +30,20 @@ export default function TransactionHistory() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col">
+        <div className="min-h-screen bg-black text-white flex flex-col">
+
+             
 
             {/* Transaction History Main Content */}
             <main className="flex-grow container mx-auto px-6 py-12">
-                <h2 className="text-4xl font-extrabold text-blue-900 mb-8 text-center">
+                <h2 className="text-4xl font-extrabold text-[#A0FF99] mb-8 text-center">
                     Transaction History
                 </h2>
 
                 {/* Transaction Table */}
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                     {/* Header Row */}
-                    <div className="grid grid-cols-12 gap-4 p-4 bg-blue-600 text-white font-semibold">
+                    <div className="grid grid-cols-12 gap-4 p-4 bg-[#0ba300] text-black font-semibold">
                         <div className="col-span-1 text-center">No.</div>
                         <div className="col-span-4">Sender</div>
                         <div className="col-span-4">Receiver</div>
@@ -55,9 +58,9 @@ export default function TransactionHistory() {
                                     key={i}
                                     className="grid grid-cols-12 gap-4 p-4 hover:bg-blue-50 transition-colors"
                                 >
-                                    <div className="col-span-1 text-center text-blue-800">{i + 1}</div>
-                                    <div className="col-span-4 text-blue-900">{user.senderFirstName} {user.senderLastName}</div>
-                                    <div className="col-span-4 text-blue-900">{user.receiverFirstName} {user.receiverLastName}</div>
+                                    <div className="col-span-1 text-center text-black">{i + 1}</div>
+                                    <div className="col-span-4 text-black">{user.senderFirstName} {user.senderLastName}</div>
+                                    <div className="col-span-4 text-black">{user.receiverFirstName} {user.receiverLastName}</div>
                                     <div className={`col-span-3 text-right font-semibold ${firstname === user.senderFirstName
                                         ? 'text-red-600'
                                         : 'text-green-600'
