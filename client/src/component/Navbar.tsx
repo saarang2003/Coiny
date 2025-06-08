@@ -13,6 +13,19 @@ type Indi = {
     onClose: () => void;
 };
 
+type User = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+};
+
+type QrImageDecoderProps = {
+  navigate: (path: string) => void;
+  name: string;
+};
+
+
 function QrModal({ userId, onClose }: Indi) {
   const qrRef = useRef(null);
 
@@ -63,7 +76,7 @@ function QrModal({ userId, onClose }: Indi) {
   );
 }
 
-function QrImageDecoder() {
+function QrImageDecoder({ navigate, name }: QrImageDecoderProps ) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +101,7 @@ function QrImageDecoder() {
         const code = jsQR(imageData.data, canvas.width, canvas.height);
 
         if (code) {
-          alert("QR Code data: " + code.data);
+           navigate(`/sendmoney?id=${code.data}&name=${name}`)
         } else {
           alert("No QR code found in the image.");
         }
@@ -122,13 +135,16 @@ function QrImageDecoder() {
 
 export default function Navbar() {
 
-     const [showModal, setShowModal] = useState(false);
-const [showScanner, setShowScanner] = useState(false);
+const [showModal, setShowModal] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
     const { user } = useRecoilValue(balanceAtom);
     console.log("user" , user);
     const navigate = useNavigate();
+    const [info, setInfo] = useState<User[]>([]);
+
+
     return (
         <nav className="w-full bg-black text-[#A0FF99] shadow-md border-b border-blue-100">
             <div className="container mx-auto px-6 py-4  flex flex-row justify-between items-center">
@@ -138,7 +154,7 @@ const [showScanner, setShowScanner] = useState(false);
                     </Link>
                 </div>
                 <div className="flex flex-row gap-4 items-center">
-                    <QrImageDecoder />
+                    <QrImageDecoder navigate={navigate} name={user.firstName} />
                     <button 
                     onClick={openModal}
                        className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
