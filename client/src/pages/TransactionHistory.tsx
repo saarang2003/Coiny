@@ -20,7 +20,6 @@ export default function TransactionHistory() {
         const res = await axios.get("http://localhost:5000/api/v1/account/history", {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") }
         });
-        console.log("data" , res);
         setFirstName(res.data.user);
         setData(res.data.history);
     }

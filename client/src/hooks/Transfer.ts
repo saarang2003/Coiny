@@ -29,8 +29,6 @@ export default function useTransfer({ amount, id }: Payment) {
           },
         }
       );
-
-      console.log("response transaction",response.data.message);
       if (response.data.rewardCoins !== undefined) {
       setRewardCoins(response.data.rewardCoins); // ✅ update state
       alert('Transfer successful!');

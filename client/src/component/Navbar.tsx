@@ -140,7 +140,6 @@ const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
     const { user } = useRecoilValue(balanceAtom);
-    console.log("user" , user);
     const navigate = useNavigate();
     const rewardCoins = useRecoilValue(rewardCoinsAtom);
 
