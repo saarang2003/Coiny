@@ -10,7 +10,7 @@ export const balanceAtom = atom({
         key: "balanceSelector",
         get: async ({ get }) => {
             const token = localStorage.getItem("token");
-            const response = await axios.get('http://localhost:5000/api/v1/account/balance', {
+            const response = await axios.get('https://coiny.onrender.com/api/v1/account/balance', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -31,7 +31,7 @@ export const userDetailsSelector = selector({
     key: "userDetailsSelector",
     get: async ({ get }) => {
         const user = get(usersDetailsAtom);
-        const res = await axios.get(`http://localhost:5000/api/v1/user/users?filter=${user}`, {
+        const res = await axios.get(`https://coiny.onrender.com/api/v1/user/users?filter=${user}`, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
