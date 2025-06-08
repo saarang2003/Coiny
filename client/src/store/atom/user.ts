@@ -77,3 +77,9 @@ export const alertAtom = atom({
         color: ""
     }
 });
+
+// rewardCoins
+export const rewardCoinsAtom = atom({
+  key: 'rewardCoinsAtom',
+  default: 0,
+});

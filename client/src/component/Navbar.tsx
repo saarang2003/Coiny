@@ -3,7 +3,7 @@
 
 import { useRecoilValue } from 'recoil'
 import { useNavigate, Link } from 'react-router-dom';
-import { balanceAtom } from '../store/atom/user';
+import { balanceAtom, rewardCoinsAtom } from '../store/atom/user';
 import { useRef, useState } from 'react';
 import  QRCode  from 'react-qr-code';
 import jsQR from 'jsqr';
@@ -137,14 +137,12 @@ function QrImageDecoder({ navigate, name }: QrImageDecoderProps ) {
 export default function Navbar() {
 
 const [showModal, setShowModal] = useState(false);
-  const [showScanner, setShowScanner] = useState(false);
-  const [count , setCount] = useState(0);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
     const { user } = useRecoilValue(balanceAtom);
     console.log("user" , user);
     const navigate = useNavigate();
-    const [info, setInfo] = useState<User[]>([]);
+    const rewardCoins = useRecoilValue(rewardCoinsAtom);
 
 
     return (
@@ -252,10 +250,11 @@ const [showModal, setShowModal] = useState(false);
                     <button 
                     >
                        <BadgeCent color="#A0FF99" className='inline mx-2' />
-                       {count}
+                       {rewardCoins}
                     </button>
 
                     <button 
+
                         onClick={() => navigate("history")} 
                         className="text-[#A0FF99] hover:bg-blue-50 hover:text-black rounded-md px-3 py-1 transition"
                     >

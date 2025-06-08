@@ -105,6 +105,7 @@ const doTransfer = async (req, res) => {
     );
 
     send.rewardCoins += coinsToAdd;
+    await send.save({ session });
     // commit transaction
     await session.commitTransaction();
     res.json({

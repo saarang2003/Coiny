@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useNavigate } from "react-router-dom";
 import { useRecoilCallback, useSetRecoilState } from "recoil";
-import { alertAtom, amountAtom } from "../store/atom/user";
+import { alertAtom, amountAtom, rewardCoinsAtom } from "../store/atom/user";
 import axios from "axios";
 
 type Payment = {
@@ -13,6 +13,7 @@ export default function useTransfer({ amount, id }: Payment) {
   const navigate = useNavigate();
   const setAmount = useSetRecoilState(amountAtom);
   const setAlert = useSetRecoilState(alertAtom);
+  const setRewardCoins = useSetRecoilState(rewardCoinsAtom)
 
   const handleTransfer = useRecoilCallback(({ set }) => async () => {
     try {
@@ -29,7 +30,12 @@ export default function useTransfer({ amount, id }: Payment) {
         }
       );
 
-      console.log(response.data.message);
+      console.log("response transaction",response.data.message);
+      if (response.data.rewardCoins !== undefined) {
+      setRewardCoins(response.data.rewardCoins); // ✅ update state
+      alert('Transfer successful!');
+    }
+
       setAlert({
         display: true,
         color: "green",
