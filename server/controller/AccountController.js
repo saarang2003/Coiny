@@ -30,6 +30,7 @@ const doTransfer = async (req, res) => {
     const session = await mongoose.startSession();
     session.startTransaction();
     const { amount, to } = req.body;
+    const coinsToAdd = 5;
 
     if (amount <= 0) {
       await session.abortTransaction();
@@ -103,11 +104,12 @@ const doTransfer = async (req, res) => {
       { session }
     );
 
-
+    send.rewardCoins += coinsToAdd;
     // commit transaction
     await session.commitTransaction();
     res.json({
       message: "Transfer successful",
+      rewardCoins: send.rewardCoins
     });
   } catch (error) {
      console.error("Transfer error:", error);

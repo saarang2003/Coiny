@@ -29,6 +29,10 @@ const UserSchema = new mongoose.Schema({
         minLength: [3, "Last name must be at least 3 characters."],
         maxLength: [50, "Last name must be at most 50 characters."]
     },
+    rewardCoins: {
+    type: Number,
+    default: 0
+  }
 });
 
 const User = mongoose.model("User", UserSchema);
