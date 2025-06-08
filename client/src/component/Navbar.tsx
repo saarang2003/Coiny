@@ -1,11 +1,36 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useRecoilValue } from 'recoil'
 
 import { useNavigate, Link } from 'react-router-dom';
 import { balanceAtom } from '../store/atom/user';
+import { useState } from 'react';
+import  QRCode  from 'react-qr-code';
+
+type Indi = {
+    userId: string;
+    onClose: () => void;
+};
+
+ function QrModal({ userId , onClose } : Indi) {
+  return (
+   <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+      <div className="bg-white text-black p-20 rounded-2xl text-center">
+        <h2 className='mb-3 font-bold'>Your QR Code</h2>
+        <QRCode value={userId} size={256} />
+        <button className='bg-black p-3 rounded-xl cursor-pointer text-white ' onClick={onClose} style={{ marginTop: 20 }}>Close</button>
+      </div>
+    </div>
+  );
+}
 
 export default function Navbar() {
+
+     const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
     const { user } = useRecoilValue(balanceAtom);
     console.log("user" , user);
     const navigate = useNavigate();
@@ -26,11 +51,12 @@ export default function Navbar() {
                         Pay By Qr
                     </button>
                     <button 
-                        onClick={() => navigate("history")} 
+                    onClick={openModal}
                        className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
                     >
                         Receive By Qr
                     </button>
+                    {showModal && <QrModal userId={user._id} onClose={closeModal} />}
 
                     <button 
                         onClick={() => navigate("history")} 
