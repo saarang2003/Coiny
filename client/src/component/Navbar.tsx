@@ -2,11 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useRecoilValue } from 'recoil'
-
 import { useNavigate, Link } from 'react-router-dom';
 import { balanceAtom } from '../store/atom/user';
 import { useRef, useState } from 'react';
 import  QRCode  from 'react-qr-code';
+import jsQR from 'jsqr';
 
 type Indi = {
     userId: string;
@@ -63,13 +63,67 @@ function QrModal({ userId, onClose }: Indi) {
   );
 }
 
+function QrImageDecoder() {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const img = new Image();
+      img.src = reader.result as string;
+
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, canvas.width, canvas.height);
+
+        if (code) {
+          alert("QR Code data: " + code.data);
+        } else {
+          alert("No QR code found in the image.");
+        }
+      };
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  return (
+    <div className="p-4 text-center">
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+      />
+      <button
+      className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
+        onClick={() => fileInputRef.current?.click()}
+      >
+       Pay Via QR
+      </button>
+    </div>
+  );
+}
+
 
 
 
 export default function Navbar() {
 
      const [showModal, setShowModal] = useState(false);
-
+const [showScanner, setShowScanner] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
     const { user } = useRecoilValue(balanceAtom);
@@ -84,13 +138,7 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div className="flex flex-row gap-4 items-center">
-
-                     <button 
-                        onClick={() => navigate("history")} 
-                       className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
-                    >
-                        Pay By Qr
-                    </button>
+                    <QrImageDecoder />
                     <button 
                     onClick={openModal}
                        className="hover:text-[#A0FF99] hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"
