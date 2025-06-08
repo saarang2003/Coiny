@@ -107,7 +107,12 @@ export function HeroSection() {
 
                   <h1 className="mt-8 max-w-7xl mx-auto text-balance font-semibold text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]">
                     Everything You Need For Money
-                   <RoughNotation type="underline" color="#A0FF99" order="3" strokeWidth={4} show={true}>
+                   <RoughNotation  type="underline"
+                              color="#A0FF99"
+                              show={true}
+                              animationDelay={600}
+                              strokeWidth={3}
+                              padding={[8, 8, 4, 6]}>
  {" "}Management
 </RoughNotation>
                   </h1>
