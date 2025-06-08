@@ -50,7 +50,7 @@ export function Features() {
                                     </svg>
                                 </div>
                                 <div className="relative z-10 mt-6 space-y-2 text-center">
-                                    <h2 className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-white">Security is a foundation.</h2>
+                                    <h2 className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-[#A0FF99]">Security is a foundation.</h2>
                                     <p className="text-foreground">We protect every transaction with enterprise-grade encryption and fraud detection. Your users' data stays safe, always.</p>
                                 </div>
                             </CardContent>
