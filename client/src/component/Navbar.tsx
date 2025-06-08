@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil'
 
 import { useNavigate, Link } from 'react-router-dom';
 import { balanceAtom } from '../store/atom/user';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import  QRCode  from 'react-qr-code';
 
 type Indi = {
@@ -13,17 +13,58 @@ type Indi = {
     onClose: () => void;
 };
 
- function QrModal({ userId , onClose } : Indi) {
+function QrModal({ userId, onClose }: Indi) {
+  const qrRef = useRef(null);
+
+  const downloadQR = () => {
+    const svg = qrRef.current;
+    if (!svg) return;
+
+    const serializer = new XMLSerializer();
+    const svgData = serializer.serializeToString(svg);
+
+    const canvas = document.createElement("canvas");
+    const img = new Image();
+
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx?.drawImage(img, 0, 0);
+
+      const pngFile = canvas.toDataURL("image/png");
+
+      const link = document.createElement("a");
+      link.href = pngFile;
+      link.download = "qr-code.png";
+      link.click();
+    };
+
+    img.src = "data:image/svg+xml;base64," + btoa(svgData);
+  };
+
   return (
-   <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+    <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
       <div className="bg-white text-black p-20 rounded-2xl text-center">
         <h2 className='mb-3 font-bold'>Your QR Code</h2>
-        <QRCode value={userId} size={256} />
-        <button className='bg-black p-3 rounded-xl cursor-pointer text-white ' onClick={onClose} style={{ marginTop: 20 }}>Close</button>
+        <div style={{ background: "white", padding: "16px" }}>
+          <QRCode ref={qrRef} value={userId} size={256} />
+        </div>
+        <div className='flex justify-center items-center gap-x-2'>
+        <button className='bg-black p-3 rounded-xl cursor-pointer text-white mt-4' onClick={onClose}>
+          Close
+        </button>
+        <button className='bg-black p-3 rounded-xl cursor-pointer text-white mt-4' onClick={downloadQR}>
+          Get Image
+        </button>
+        </div>
       </div>
     </div>
   );
 }
+
+
+
 
 export default function Navbar() {
 
