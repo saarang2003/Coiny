@@ -15,7 +15,7 @@ type AuthData = {
 export function useAuth(route: 'signin' | 'signup', data: AuthData) {
   const navigate = useNavigate();
   const setAlert = useSetRecoilState(alertAtom);
-  const setRewardCoins = useRecoilState(rewardCoinsAtom);
+  const [rewardCoins, setRewardCoins] = useRecoilState(rewardCoinsAtom);
   const [signIn, setSignIn] = useRecoilState(signInAtom);
   const [signUp, setSignUp] = useRecoilState(signUpAtom);
 
@@ -26,9 +26,21 @@ export function useAuth(route: 'signin' | 'signup', data: AuthData) {
         data
       );
 
+      const token = response.data.token;
       localStorage.setItem('token', response.data.token);
 
-      
+       const userInfo = await axios.get("https://coiny.onrender.com/api/v1/user/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+       // ✅ Set reward coins
+      if (userInfo.data?.rewardCoins !== undefined) {
+        setRewardCoins(userInfo.data.rewardCoins);
+      }
+
+
 
       setAlert({
         display: true,
