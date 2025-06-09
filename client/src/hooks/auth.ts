@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
-import { alertAtom, signInAtom, signUpAtom } from '../store/atom/user';
+import { alertAtom, rewardCoinsAtom, signInAtom, signUpAtom } from '../store/atom/user';
 
 type AuthData = {
   username: string;
@@ -15,6 +15,7 @@ type AuthData = {
 export function useAuth(route: 'signin' | 'signup', data: AuthData) {
   const navigate = useNavigate();
   const setAlert = useSetRecoilState(alertAtom);
+  const setRewardCoins = useRecoilState(rewardCoinsAtom);
   const [signIn, setSignIn] = useRecoilState(signInAtom);
   const [signUp, setSignUp] = useRecoilState(signUpAtom);
 
@@ -26,6 +27,8 @@ export function useAuth(route: 'signin' | 'signup', data: AuthData) {
       );
 
       localStorage.setItem('token', response.data.token);
+
+      
 
       setAlert({
         display: true,

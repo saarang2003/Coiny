@@ -150,6 +150,25 @@ const updateUser = z.object({
 
 }
 
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      rewardCoins: user.rewardCoins,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error!" });
+  }
+};
+
  const getAllUser = async(req,res) =>{
 
       console.log("Inside getAllUser"); // Add this to check if function runs
@@ -184,4 +203,4 @@ const updateUser = z.object({
     }
 }
 
-module.exports = {getAllUser , signIn , signUp , upDateUser};
+module.exports = {getAllUser , signIn , signUp , upDateUser , getUser};
