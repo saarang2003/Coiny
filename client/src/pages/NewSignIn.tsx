@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/auth";
 import { useRecoilState } from "recoil";
 
 import { signInAtom } from "../store/atom/user";
+import { Link } from "react-router-dom";
 
 const SignIn1 = () => {
   const [data, setData] = useRecoilState(signInAtom);
@@ -155,12 +156,12 @@ const SignIn1 = () => {
             <div className="w-full text-center mt-2">
               <span className="text-xs text-gray-400">
                 Don&apos;t have an account?{" "}
-                <a
-                  href="/signup"
+                <Link
+                  to="/signup"
                   className="underline text-white/80 hover:text-white"
                 >
                   Sign up, it&apos;s free!
-                </a>
+                </Link>
               </span>
             </div>
           </div>

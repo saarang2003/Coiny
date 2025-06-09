@@ -12,7 +12,8 @@ import TransactionHistory from "./pages/TransactionHistory";
 import Signup from "./pages/Signup";
 import Signin from "./pages/SignIn";
 import Send from "./pages/Send";
-import { SignIn1 } from "./pages/NewSignIn";
+import { 
+  SignIn1 } from "./pages/NewSignIn";
 import { SignUp1 } from "./pages/NewSignUp";
 
 
