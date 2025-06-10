@@ -110,7 +110,9 @@ export function Features() {
                                     </div>
                                     <div className="space-y-2">
                                         <h2 className="group-hover:text-secondary-950 text-lg font-medium text-[#A0FF99] transition ">Faster than light</h2>
-                                        <p className="text-foreground">Provident fugit vero voluptate. Voluptates a sapiente inventore nisi.</p>
+                                        <p className="text-foreground">Experience speed that keeps up with your life. Our robust infrastructure ensures instant processing, so your money moves as fast as your ideas.
+
+</p>
                                     </div>
                                 </div>
                                 <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
@@ -150,13 +152,13 @@ export function Features() {
                                     </div>
                                     <div className="space-y-2">
                                         <h2 className="text-lg text-[#A0FF99] font-medium transition">Keep your loved ones safe</h2>
-                                        <p className="text-foreground">Voluptate. magnam magni doloribus dolores voluptates a sapiente inventore nisi.</p>
+                                        <p className="text-foreground">Protect what matters most. Send and receive money securely with friends and family, knowing every transaction is guarded by advanced safety features.</p>
                                     </div>
                                 </div>
                                 <div className="before:bg-(--color-border) relative mt-6 before:absolute before:inset-0 before:mx-auto before:w-px sm:-my-6 sm:-mr-6">
                                     <div className="relative flex h-full flex-col justify-center space-y-6 py-6">
                                         <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
-                                            <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">Likeur</span>
+                                            <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">Sahil</span>
                                             <div className="ring-background size-7 ring-4">
                                                 <img className="size-full rounded-full" src="https://avatars.githubusercontent.com/u/102558960?v=4" alt="" />
                                             </div>
@@ -165,7 +167,7 @@ export function Features() {
                                             <div className="ring-background size-8 ring-4">
                                                 <img className="size-full rounded-full" src="https://avatars.githubusercontent.com/u/47919550?v=4" alt="" />
                                             </div>
-                                            <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">M. Irung</span>
+                                            <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">M. John</span>
                                         </div>
                                         <div className="relative flex w-[calc(50%+0.875rem)] items-center justify-end gap-2">
                                             <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">B. Ng</span>
