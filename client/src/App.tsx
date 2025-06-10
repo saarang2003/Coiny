@@ -7,18 +7,19 @@ import Alert from "./component/Alert";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Loading from "./component/Loading";
-import Users from "./component/User";
+
 import TransactionHistory from "./pages/TransactionHistory";
-import Signup from "./pages/Signup";
-import Signin from "./pages/SignIn";
 import Send from "./pages/Send";
 import { 
   SignIn1 } from "./pages/NewSignIn";
 import { SignUp1 } from "./pages/NewSignUp";
 
 
+const Users = React.lazy(() => import('./component/User'))
+
 export default function App() {
   const [alert, setAlert] = useRecoilState(alertAtom);
+
   useEffect(() => {
     let timeoutId;
     if (alert.display) {
@@ -28,6 +29,8 @@ export default function App() {
       return () => clearTimeout(timeoutId);
     }
   }, [alert, setAlert])
+
+  
   return (
     <BrowserRouter>
       <Alert />
