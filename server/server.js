@@ -8,8 +8,18 @@ dotenv.config();
 connectDb();
 
 const PORT = process.env.PORT;
-
 const app = express();
+const ratelimiter = require('express-rate-limit');
+
+const limiter = ratelimiter({
+    max: 300,
+    windowMs: 60 * 60 * 1000,
+    message: "Too many request from this IP"
+})
+
+
+app.use(limiter);
+
 app.use(express.json());
 app.use(
     cors({
