@@ -21,7 +21,6 @@ export const balanceAtom = atom({
 })
 
 
-// All User Details like firstName, lastName and Id
 export const usersDetailsAtom = atom({
     key: "usersDetailsAtom",
     default: ''
