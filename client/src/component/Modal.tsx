@@ -36,6 +36,8 @@ export default function Modal({ open, onClose, onVerified }: ModalProps) {
           <PinInput
             length={4}
             focus
+            secret
+            secretDelay={100}
             type="numeric"
             onComplete={handlePinComplete}
             inputStyle={{

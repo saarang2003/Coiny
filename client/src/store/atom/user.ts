@@ -80,5 +80,22 @@ export const alertAtom = atom({
 // rewardCoins
 export const rewardCoinsAtom = atom({
   key: 'rewardCoinsAtom',
-  default: 0,
+  default: selector({
+    key: 'rewardCoinsSelector',
+    get: async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return 0;
+      try {
+        const res = await axios.get("https://coiny.onrender.com/api/v1/user/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return res.data.rewardCoins ?? 0;
+      } catch (err) {
+        console.error("Failed to fetch reward coins:", err);
+        return 0;
+      }
+    }
+  }),
 });
