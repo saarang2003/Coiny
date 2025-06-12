@@ -32,6 +32,10 @@ const UserSchema = new mongoose.Schema({
     rewardCoins: {
     type: Number,
     default: 0
+  },
+  pin : {
+   type : String,
+   default : null
   }
 });
 

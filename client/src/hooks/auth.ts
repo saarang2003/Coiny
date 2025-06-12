@@ -36,7 +36,8 @@ export function useAuth(route: 'signin' | 'signup', data: AuthData) {
       });
 
        // ✅ Set reward coins
-      if (userInfo.data?.rewardCoins !== undefined) {
+       console.log(userInfo);
+      if (userInfo?.data?.rewardCoins !== undefined) {
         setRewardCoins(userInfo.data.rewardCoins);
       }
 

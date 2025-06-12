@@ -6,11 +6,15 @@ import { useEffect } from 'react';
 export default function Balance() {
     const { balance } = useRecoilValue(balanceAtom);
     const twoDecimal = parseFloat(balance).toFixed(2);
+
+
     
 
     useEffect(() =>{
        console.log("Balance updated");
     } , [balance])
+
+
     
     return (
         <div className="w-full">

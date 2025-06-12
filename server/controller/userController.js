@@ -203,4 +203,27 @@ const getUser = async (req, res) => {
     }
 }
 
-module.exports = {getAllUser , signIn , signUp , upDateUser , getUser};
+const createPin = async (req, res) => {
+  try {
+    const { pin } = req.body;
+
+    if (!pin || pin.length < 4) {
+      return res.status(400).json({ message: "Invalid PIN" });
+    }
+
+    const hashedPin = await bcrypt.hash(pin, 10);
+    const user = await User.findById(req.userId);
+
+    user.pin = hashedPin;
+    await user.save();
+
+    res.status(200).json({ message: "PIN set successfully" });
+    
+  } catch (error) {
+     console.error("PIN creation error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+module.exports = {getAllUser , signIn , signUp , upDateUser , getUser , createPin};
