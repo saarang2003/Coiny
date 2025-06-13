@@ -11,10 +11,10 @@ const {History} = require('../models/History');
 const { authMiddleware } = require("../middleware/middleware");
 
 const singUpBody = z.object({
-    username: z.string().email(),
-    password: z.string(),
-    firstName: z.string().min(3),
-    lastName: z.string().min(3),
+   username: z.string().email("Invalid email"),
+   password: z.string().min(4, "Password must be at least 6 characters"),
+  firstName: z.string().min(3, "First name too short"),
+  lastName: z.string().min(3, "Last name too short")
 });
 
 
