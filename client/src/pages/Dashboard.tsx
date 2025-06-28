@@ -28,7 +28,7 @@ export default function Dashboard() {
 
   const handleCreatePin = async () => {
   try {
-    const res = await fetch("https://coiny.onrender.com/api/v1/account/create", {
+    const res = await fetch("https://coiny.onrender.com/api/v1/user/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
