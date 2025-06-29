@@ -4,10 +4,11 @@ import './index.css';
 import App from './App.tsx';
 import { RecoilRoot } from 'recoil';
 
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RecoilRoot>
-      <App />
+        <App />
     </RecoilRoot>
   </StrictMode>,
 );

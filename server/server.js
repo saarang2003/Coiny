@@ -36,9 +36,7 @@ app.use(
     })
   );
 
-  app.use("/api/v1", rootRouter);
-  
-
+  app.use("/api/v1", rootRouter);  
   app.listen(5000, ()=> {
     console.log(`server is running` , PORT);
 })
