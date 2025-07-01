@@ -17,7 +17,7 @@ export default function TransactionHistory() {
   const [firstname, setFirstName] = useState<string>("");
 
     async function handleData() {
-        const res = await axios.get("https://coiny.onrender.com/api/v1/user/history", {
+        const res = await axios.get("https://coiny.onrender.com/api/v1/account/history", {
             headers: { Authorization: "Bearer " + localStorage.getItem("token") }
         });
         setFirstName(res.data.user);
