@@ -14,6 +14,7 @@ import { SignUp1 } from "./pages/NewSignUp";
 
 const Users = React.lazy(() => import('./component/User'));
 
+
 export default function App() {
   const [alert, setAlert] = useRecoilState(alertAtom);
 
