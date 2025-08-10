@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useNavigate, Link } from "react-router-dom";
-import { balanceAtom, rewardCoinsAtom } from "../store/atom/user";
+import { alertAtom, balanceAtom, rewardCoinsAtom } from "../store/atom/user";
 import { useEffect, useRef, useState } from "react";
 import QRCode from "react-qr-code";
 import jsQR from "jsqr";
@@ -84,6 +84,8 @@ function QrModal({ userId, onClose }: Indi) {
 
 function QrImageDecoder({ navigate, name }: QrImageDecoderProps) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { user } = useRecoilValue(balanceAtom);
+  const setAlert = useSetRecoilState(alertAtom);
 
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -104,16 +106,25 @@ function QrImageDecoder({ navigate, name }: QrImageDecoderProps) {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const code = jsQR(imageData.data, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageData.data, canvas.width, canvas.height);
 
-        if (code) {
-          navigate(`/sendmoney?id=${code.data}&name=${name}`);
-        } else {
-          alert("No QR code found in the image.");
-        }
-      };
+    if (code && code.data === user._id) {
+      setAlert({
+        display: true,
+        color: "red",
+        message: "You cannot send money to yourself.",
+      });
+      return;
+    }
+
+    if (code) {
+      navigate(`/sendmoney?id=${code.data}&name=${name}`);
+    } else {
+      alert("No QR code found in the image.");
+    }
+  };
     };
 
     reader.readAsDataURL(file);
