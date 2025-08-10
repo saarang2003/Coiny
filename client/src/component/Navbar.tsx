@@ -241,7 +241,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="flex flex-row gap-4 items-center">
-          <QrImageDecoder navigate={navigate} name={user.firstName} />
+          <QrImageDecoder navigate={navigate}  name={user.firstName} />
           <button
             onClick={openModal}
             className="hover:text-[#A0FF99] max-w-fit hover:bg-black text-black bg-white border-1 border-white cursor-pointer shadow-2xl rounded-md px-3 py-1 transition"

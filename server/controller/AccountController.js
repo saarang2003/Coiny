@@ -45,6 +45,7 @@ const doTransfer = async (req, res) => {
     const send = await User.findOne({ _id: req.userId }).session(session);
     const receive = await User.findOne({ _id: to }).session(session);
 
+
     if (!send) {
       await session.abortTransaction();
       return res.status(400).json({
@@ -58,6 +59,12 @@ const doTransfer = async (req, res) => {
         message: "Receiver's Account doesn't exist!",
       });
     }
+
+     if (send._id.equals(receive._id)) {
+      await session.abortTransaction();
+      return res.status(400).json({ error: "Cannot send money to yourself." });
+    }
+
 
     // fetch the accounts within the transaction
     const account = await Account.findOne({ userId: req.userId }).session(
